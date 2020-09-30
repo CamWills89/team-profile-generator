@@ -1,32 +1,61 @@
-body{
-    background-color: rgba(255, 219, 181, 1);
-}
-.navbar-header {
-    float: left;
-    padding: 15px;
-    text-align: center;
-    width: 100%;
-    }
-.navbar-brand {
-    float:none;
-    font-size: 48px;}
+* {
+    box-sizing: border-box;
+  }
 
-.navbar{
-    background: rgba(45, 48, 71, 0.925);
-    color: rgba(224, 164, 88, 1);
-}
-
-.card{
-    margin: 20px;
+body {
+    background-color: rgb(245, 237, 237);
+    margin: 0;
     padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.5;
+    font-size: 16px;
+  }
+
+  header {
+    /* background-color: rgb(48, 45, 45); */
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    padding: 0.4rem;
+  }
+
+h2 {
+  font-weight: bold;
 }
 
-.card-header{
-    background: rgba(65, 157, 120, 0.582);
+span{
+  font-size: 0.8em;
 }
 
-.list-group{
-    margin: 10px;
-    border: solid 2px rgba(128, 128, 128, 0.205);
-    
-}
+  .container {
+      padding: 1rem;
+  }
+
+  /* UV Index colors to display severity */
+  .favorable {
+    background-color: #77dd77;
+    color: #000000
+  }
+  .moderate {
+    background-color: #faac54;
+    color: #000000;
+  }
+  
+  .severe {
+    background-color: #ff6961;
+    color: #000000
+  }
+  
+  /* styles for the search history list */
+  li {
+    border: rgb(59, 58, 58) solid 1px;
+    padding: 10px;
+    list-style: upper-roman; 
+  }
+
+  .list-group-item {
+    text-decoration: none;
+  }
+  .card {
+      padding: 0;
+  }
