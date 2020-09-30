@@ -1,7 +1,7 @@
 const Manager = require("../lib/Manager");
-const Employee = require('../lib/Employee');
+const Employee = require("../lib/Employee");
 
-// officeNumber 
+// officeNumber
 test("creates an Manager office number", () => {
   const manager = new Manager("Cam", 1, "test@test.com", 100);
 
@@ -9,8 +9,8 @@ test("creates an Manager office number", () => {
 });
 
 // getRole() // Overridden to return 'Manager'
-test('get manager role from getRole()', () => {
-      const manager = new Manager("Cam", 1, "test@test.com", 100);
-    //expected to override to return 'Manager'
-    expect(manager.getRole()).toBe('Manager');
-})
+test("get manager role from getRole()", () => {
+  const manager = new Manager("Cam", 1, "test@test.com", 100);
+  //expected to override to return 'Manager'
+  expect(manager.getRole()).toBe("Manager");
+});

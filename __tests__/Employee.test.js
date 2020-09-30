@@ -30,7 +30,7 @@ test("get ID from getID()", () => {
 // getRole() // Returns 'Employee'
 test("get role from getRole()", () => {
   const employee = new Employee("Cam", 1, "test@test.com");
-//expected to return 'Employee'
+  //expected to return 'Employee'
   expect(employee.getRole()).toBe("Employee");
 });
 // The other three classes will extend Employee.

@@ -1,22 +1,21 @@
 const Engineer = require("../lib/Engineer");
-const Employee = require('../lib/Employee');
+const Employee = require("../lib/Employee");
 
 //GitHub username
 test("creates an Engineer github username", () => {
-  const manager = new Manager("Cam", 1, "test@test.com", 100);
+  const engineer = new Engineer("Cam", 1, "test@test.com", "github");
 
-  expect(manager.officeNumber).toBe(100);
+  expect(engineer.github).toBe("github");
 });
-
-// getRole() // Overridden to return 'Manager'
-test('get manager role from getRole()', () => {
-      const manager = new Manager("Cam", 1, "test@test.com", 100);
-    //expected to override to return 'Manager'
-    expect(manager.getRole()).toBe('Manager');
-})
-
-
-
 // getGithub()
+test("get github user name from getGithub()", () => {
+  const engineer = new Engineer("Cam", 1, "test@test.com", "github");
 
+  expect(engineer.getGithub()).toBe("github");
+});
 // getRole() // Overridden to return 'Engineer'
+test("get engineer role from getRole()", () => {
+  const engineer = new Engineer("Cam", 1, "test@test.com", "github");
+  //expected to override to return 'Manager'
+  expect(engineer.getRole()).toBe("Engineer");
+});
