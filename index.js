@@ -253,7 +253,7 @@ const addIntern = (roleChoice) => {
     });
 };
 
-const addNewMember = (team) => {
+const addNewMember = () => {
   inquirer
     .prompt([
       {
@@ -268,7 +268,7 @@ const addNewMember = (team) => {
         return addTeam(team);
       }
       if (!teamArr.confirmAddMember) {
-        console.log(team);
+        console.log('team', team);
         let pageHTML = generatePage(team);
         writeFile(pageHTML)
           .then((writeFileResponse) => {
