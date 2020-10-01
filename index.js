@@ -9,6 +9,7 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+const generatePage = require("./src/page-template");
 //importing write and copyfile functions
 const { writeFile, copyFile } = require("./generate-site");
 
@@ -80,18 +81,16 @@ function managerPrompt() {
     .then((answers) => {
       const newManager = new Manager(
         answers.name,
-        answers.role,
-        answers.email,
         answers.id,
+        answers.email,
+        answers.role,
         answers.officeNumber
       );
       team.push(newManager);
-      console.log(team);
-      addTeamMembers();
     });
 }
 
-function addTeamMembers() {
+function addTeam() {
   console.log(`
   ======================
   Add a New Team Member
@@ -166,30 +165,13 @@ function addTeamMembers() {
           .then((roleAnswer) => {
             const newEngineer = new Engineer(
               answers.name,
-              answers.role,
-              answers.email,
               answers.id,
+              answers.email,
+              answers.role,
               roleAnswer.github
             );
             team.push(newEngineer);
-            inquirer
-              .prompt([
-                {
-                  type: "confirm",
-                  name: "confirmAddMember",
-                  message: "Would you like to enter another team member?",
-                  default: false,
-                },
-              ])
-              .then((teamArr) => {
-                team.push(teamArr);
-                if (teamArr.confirmAddMember) {
-                  return addTeamMembers(team);
-                } else {
-                  console.log(team);
-                  return team;
-                }
-              });
+            addNewMember(team);
           });
       }
       if (answers.role === "Intern") {
@@ -212,33 +194,78 @@ function addTeamMembers() {
           .then((roleAnswer) => {
             const newInern = new Intern(
               answers.name,
-              answers.role,
-              answers.email,
               answers.id,
+              answers.email,
+              answers.role,
               roleAnswer.school
             );
             team.push(newInern);
-            inquirer
-              .prompt([
-                {
-                  type: "confirm",
-                  name: "confirmAddMember",
-                  message: "Would you like to enter another team member?",
-                  default: false,
-                },
-              ])
-              .then((teamArr) => {
-                team.push(teamArr);
-                if (teamArr.confirmAddMember) {
-                  return addTeamMembers(team);
-                } else {
-                  console.log(team);
-                  return team;
-                }
-              });
+            addNewMember(team);
           });
       }
     });
 }
 
-managerPrompt();
+const addNewMember = (team) => {
+  inquirer
+    .prompt([
+      {
+        type: "confirm",
+        name: "confirmAddMember",
+        message: "Would you like to enter another team member?",
+        default: false,
+      },
+    ])
+    .then((teamArr) => {
+      if (teamArr.confirmAddMember) {
+        return addTeam(team);
+      }
+      if (!teamArr.confirmAddMember) {
+        console.log(team);
+        return team;
+      }
+    //   generatePage(team)
+    //     .then((pageHTML) => {
+    //       return writeFile(pageHTML);
+    //     })
+    //     .then((writeFileResponse) => {
+    //       console.log(writeFileResponse);
+    //       return copyFile();
+    //     })
+    //     .then((copyFileResponse) => {
+    //       console.log(copyFileResponse);
+    //     });
+    })
+    //   .then((teamArr) => {
+    //   return generatePage(team);
+    // })
+    // .then((pageHTML) => {
+    //   return writeFile(pageHTML);
+    // })
+    // .then((writeFileResponse) => {
+    //   console.log(writeFileResponse);
+    //   return copyFile();
+    // })
+    // .then((copyFileResponse) => {
+    //   console.log(copyFileResponse);
+    // })
+};
+
+managerPrompt()
+  .then(addTeam)
+    .then((team) => {
+      return generatePage(team);
+    })
+    .then((pageHTML) => {
+      return writeFile(pageHTML);
+    })
+    .then((writeFileResponse) => {
+      console.log(writeFileResponse);
+      return copyFile();
+    })
+    .then((copyFileResponse) => {
+      console.log(copyFileResponse);
+    })
+  .catch((err) => {
+    console.log(err);
+  });
