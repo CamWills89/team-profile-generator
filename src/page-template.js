@@ -3,7 +3,12 @@
 //engineer = <h6 class="card-subtitle mb-2 text-white fas fa-glasses"> Engineer</h6>
 //intern = <h6 class="card-subtitle mb-2 text-white fas fa-user-graduate"> Intern</h6>
 
+//perhaps try to use the getRole() methods I created in my tests
+
 const generateCards = (teamArray) => {
+    console.log(teamArray);
+    
+    
   return `
         ${teamArray
           .filter(({ Manager }) => Manager)
@@ -84,7 +89,8 @@ const generateCards = (teamArray) => {
 
 const generateProjects = (teamArray) => {
   console.log(teamArray);
-    const { cards } = teamArray;
+    const cards = teamArray;
+    console.log(cards);
 
   return `
     <!DOCTYPE html>
