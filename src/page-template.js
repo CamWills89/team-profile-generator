@@ -1,74 +1,59 @@
-//icon styles:
-//manager = <h6 class="card-subtitle mb-2 text-white fas fa-mug-hot"> Manager</h6>
-//engineer = <h6 class="card-subtitle mb-2 text-white fas fa-glasses"> Engineer</h6>
-//intern = <h6 class="card-subtitle mb-2 text-white fas fa-user-graduate"> Intern</h6>
-
 const generateCards = (teamArray) => {
   let employeeCards = [];
+
   for (let i = 0; i < teamArray.length; i++) {
     employeeRole = teamArray[i].role;
 
+    let cardTemplate1 = `
+      <div class="row">
+      <div class="card col border-dark" style="width: 18rem">
+      <div class="card-body card-header text-white bg-dark">
+      <h5 class="card-title">${teamArray[i].name}</h5>
+      `;
+    let cardTemplate2 = `
+     </div>
+      <ul class="list-group list-group-flush">
+      <li class="list-group-item">Employee ID: ${teamArray[i].id}</li>
+      <li class="list-group-item">
+      Email: <a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a>
+      </li>
+    `;
+    let cardTemplate3 = `
+      </ul>
+      </div>
+      </div>
+  `;
+
     if (employeeRole === "Manager") {
-      employeeCards.push( `
-        <div class="row">
-        <div class="card col border-dark" style="width: 18rem">
-          <div class="card-body card-header text-white bg-dark">
-            <h5 class="card-title">${teamArray[i].name}</h5>
-            <h6 class="card-subtitle mb-2 text-white fas fa-mug-hot">
-              ${teamArray[i].role}
-            </h6>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Employee ID: ${teamArray[i].id}</li>
-            <li class="list-group-item">
-              Email: <a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a>
-            </li>
-            <li class="list-group-item">Office Number: ${teamArray[i].officeNumber} </li>
-          </ul>
-        </div>
-      </div>
-        `);
-    }
-    else if (employeeRole === "Engineer") {
       employeeCards.push(`
-        <div class="row">
-        <div class="card col border-dark" style="width: 18rem">
-          <div class="card-body card-header text-white bg-dark">
-            <h5 class="card-title">${teamArray[i].name}</h5>
-            <h6 class="card-subtitle mb-2 text-white fas fa-mug-hot">
-              ${teamArray[i].role}
-            </h6>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Employee ID: ${teamArray[i].id}</li>
-            <li class="list-group-item">
-              Email: <a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a>
-            </li>
-            <li class="list-group-item">Github: ${teamArray[i].github} </li>
-          </ul>
-        </div>
-      </div>
+        ${cardTemplate1}
+        <h6 class="card-subtitle mb-2 text-white fas fa-mug-hot">
+        ${teamArray[i].role}
+        </h6>
+        ${cardTemplate2}
+        <li class="list-group-item">Office Number: ${teamArray[i].officeNumber} </li>
+        ${cardTemplate3}
         `);
-    }
-    else if (employeeRole === "Intern") {
+    } else if (employeeRole === "Engineer") {
       employeeCards.push(`
-        <div class="row">
-        <div class="card col border-dark" style="width: 18rem">
-          <div class="card-body card-header text-white bg-dark">
-            <h5 class="card-title">${teamArray[i].name}</h5>
-            <h6 class="card-subtitle mb-2 text-white fas fa-mug-hot">
-              ${teamArray[i].role}
-            </h6>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Employee ID: ${teamArray[i].id}</li>
-            <li class="list-group-item">
-              Email: <a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a>
-            </li>
-            <li class="list-group-item">School: ${teamArray[i].school} </li>
-          </ul>
-        </div>
-      </div>
+        ${cardTemplate1}
+        <h6 class="card-subtitle mb-2 text-white fas fa-glasses">
+        ${teamArray[i].role}
+        </h6>
+        ${cardTemplate2}
+        <li class="list-group-item">Github: <a href = 'https://www.github.com/${teamArray[i].github}' target= '_blank'> ${teamArray[i].github}</a> </li>
+        ${cardTemplate3}
+          
+        `);
+    } else if (employeeRole === "Intern") {
+      employeeCards.push(`
+        ${cardTemplate1}
+        <h6 class="card-subtitle mb-2 text-white fas fa-user-graduate">
+        ${teamArray[i].role}
+        </h6>
+        ${cardTemplate2}
+        <li class="list-group-item">School: ${teamArray[i].school} </li>
+        ${cardTemplate3}
         `);
     }
   }
@@ -77,7 +62,6 @@ const generateCards = (teamArray) => {
 };
 
 const generatePage = (teamArray) => {
-
   return `
     <!DOCTYPE html>
 <html lang="en">

@@ -59,3 +59,22 @@ span{
   .card {
       padding: 0;
   }
+
+  .Manager::after{
+    content: attr("src", "Icons/mug-hot-solid.svg");
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+  }
+  .Engineer::after {
+    background-image: url(/Icons/graduation-cap-solid.svg);
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+  }
+  .Intern::after{
+    background-image: url(/Icons/glasses-solid.svg);
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+  }
