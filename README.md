@@ -10,6 +10,7 @@
 
   # Table of Contents
 
+  - [Walkthrough](#walkthrough)
   - [Installation](#installation)
   - [Usage](#usage)
   - [Credits](#credits)
@@ -23,7 +24,8 @@
 
   run "npm install" to install the dependencies. The project was build with TDD, to run the test input "npm run test" and to be prompted to enter the details to build your team, type "node index.js" in the console.
 
-  ## Walkthrough Video
+  ## Walkthrough
+  ![Walkthrough Video](https://youtu.be/cHCxy72qJY0)
   
   ## Technologies
   - JavaScript
@@ -49,16 +51,13 @@
 
 
   ## Contributing:
-
-  [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
   
   It is open source
 
-
-
   ## Tests:
 
-  Jest was used for the testing
+  Jest was used for the testing.
+  ![Screen Shot 2020-10-03 at 5 21 22 PM](https://user-images.githubusercontent.com/68020747/95001935-f21dac00-059c-11eb-8262-7f03aba78e31.png)
 
   
   ## Questions:
