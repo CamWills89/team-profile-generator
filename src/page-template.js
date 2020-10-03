@@ -1,15 +1,19 @@
 const generateCards = (teamArray) => {
+  //this array will store all the cards that will be generated
   let employeeCards = [];
 
+  //loop through the array and conditional create a card for each employee type
   for (let i = 0; i < teamArray.length; i++) {
     employeeRole = teamArray[i].role;
 
+    //splitting the employee card up into card templates that a the same so that I can dynamically add the icons and the office, github and school
     let cardTemplate1 = `
       <div class="row">
       <div class="card col border-dark" style="width: 18rem">
       <div class="card-body card-header text-white bg-dark">
       <h5 class="card-title">${teamArray[i].name}</h5>
       `;
+
     let cardTemplate2 = `
      </div>
       <ul class="list-group list-group-flush">
@@ -18,12 +22,13 @@ const generateCards = (teamArray) => {
       Email: <a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a>
       </li>
     `;
+
     let cardTemplate3 = `
       </ul>
       </div>
       </div>
   `;
-
+    //conditionally generate the html for 'Manager', 'Engineer' and 'Intern'
     if (employeeRole === "Manager") {
       employeeCards.push(`
         ${cardTemplate1}
@@ -57,10 +62,11 @@ const generateCards = (teamArray) => {
         `);
     }
   }
-  console.log(employeeCards);
+
   return employeeCards;
 };
 
+//creates the final html that will be create
 const generatePage = (teamArray) => {
   return `
     <!DOCTYPE html>

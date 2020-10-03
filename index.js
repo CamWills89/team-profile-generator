@@ -9,13 +9,15 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+//html template to dynmaically render the page
 const generatePage = require("./src/page-template");
-//importing write and copyfile functions
+//importing write and copyfile functions to write the html template and apply the css
 const { writeFile, copyFile } = require("./generate-site");
 
 //team array to store the user responses in
 const team = [];
 
+//prompt user to input the Manager details
 function managerPrompt() {
   return inquirer
     .prompt([
@@ -91,6 +93,7 @@ function managerPrompt() {
     });
 }
 
+//prompt Manager to add an Engineer or Intern
 const addTeam = () => {
   console.log(`
   ======================
@@ -116,6 +119,7 @@ const addTeam = () => {
     });
 };
 
+//questions for the engineer data
 const addEngineer = (roleChoice) => {
   return inquirer
     .prompt([
@@ -185,6 +189,7 @@ const addEngineer = (roleChoice) => {
     });
 };
 
+//questions for the Intern data
 const addIntern = (roleChoice) => {
   return inquirer
     .prompt([
@@ -254,6 +259,7 @@ const addIntern = (roleChoice) => {
     });
 };
 
+//prompt user to either add another team member or render write the html and render the page
 const addNewMember = () => {
   inquirer
     .prompt([
@@ -271,7 +277,7 @@ const addNewMember = () => {
       if (!response.confirmAddMember) {
         console.log("Team array after all questions answered", team);
         let pageHTML = generatePage(team);
-         writeFile(pageHTML)
+        writeFile(pageHTML)
           .then((writeFileResponse) => {
             console.log(writeFileResponse);
             return copyFile();
