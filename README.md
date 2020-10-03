@@ -22,7 +22,7 @@
   
   ## Installation:
 
-  run "npm install" to install the dependencies. The project was build with TDD, to run the test input "npm run test" and to be prompted to enter the details to build your team, type "node index.js" in the console.
+  run ```npm install``` to install the dependencies. The project was build with TDD, to run the test input ```npm run test``` and to be prompted to enter the details to build your team, type ```node index.js``` in the console.
 
   ## Walkthrough
   [WalkThrough Video](https://youtu.be/cHCxy72qJY0)
