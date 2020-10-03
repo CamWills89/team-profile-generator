@@ -3,94 +3,80 @@
 //engineer = <h6 class="card-subtitle mb-2 text-white fas fa-glasses"> Engineer</h6>
 //intern = <h6 class="card-subtitle mb-2 text-white fas fa-user-graduate"> Intern</h6>
 
-//perhaps try to use the getRole() methods I created in my tests
-
 const generateCards = (teamArray) => {
-    console.log(teamArray);
-    
-    
-  return `
-        ${teamArray
-          .filter(({ Manager }) => Manager)
-          .map(({ name, id, email, role, officeNumber }) => {
-            return `
-            <div class="row">
-        <div class="card col border-dark" style="width: 18rem">
-          <div class="card-body card-header text-white bg-dark">
-            <h5 class="card-title">${name}</h5>
-            <h6 class="card-subtitle mb-2 text-white fas fa-mug-hot">
-              ${role}
-            </h6>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Employee ID: ${id}</li>
-            <li class="list-group-item">
-              Email: <a href="mailto:${email}">${email}</a>
-            </li>
-            <li class="list-group-item">${officeNumber}</li>
-          </ul>
-        </div>
-      </div>
-          `;
-          })
-          .join("")}
-  
-       ${teamArray
-          .filter(({ Engineer }) => Engineer)
-          .map(({ name, id, email, role, github  }) => {
-            return `
-            <div class="row">
-        <div class="card col border-dark" style="width: 18rem">
-          <div class="card-body card-header text-white bg-dark">
-            <h5 class="card-title">${name}</h5>
-            <h6 class="card-subtitle mb-2 text-white fas fa-mug-hot">
-              ${role}
-            </h6>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Employee ID: ${id}</li>
-            <li class="list-group-item">
-              Email: <a href="mailto:${email}">${email}</a>
-            </li>
-            <li class="list-group-item">${github}</li>
-          </ul>
-        </div>
-      </div>
-          `;
-          })
-      .join("")}
+  let employeeCards = [];
+  for (let i = 0; i < teamArray.length; i++) {
+    employeeRole = teamArray[i].role;
 
-          ${teamArray
-          .filter(({ Intern }) => Intern)
-          .map(({ name, id, email, role, school  }) => {
-            return `
-            <div class="row">
+    if (employeeRole === "Manager") {
+      employeeCards.push( `
+        <div class="row">
         <div class="card col border-dark" style="width: 18rem">
           <div class="card-body card-header text-white bg-dark">
-            <h5 class="card-title">${name}</h5>
+            <h5 class="card-title">${teamArray[i].name}</h5>
             <h6 class="card-subtitle mb-2 text-white fas fa-mug-hot">
-              ${role}
+              ${teamArray[i].role}
             </h6>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Employee ID: ${id}</li>
+            <li class="list-group-item">Employee ID: ${teamArray[i].id}</li>
             <li class="list-group-item">
-              Email: <a href="mailto:${email}">${email}</a>
+              Email: <a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a>
             </li>
-            <li class="list-group-item">${school}</li>
+            <li class="list-group-item">Office Number: ${teamArray[i].officeNumber} </li>
           </ul>
         </div>
       </div>
-          `;
-          })
-          .join("")}
-    `;
+        `);
+    }
+    else if (employeeRole === "Engineer") {
+      employeeCards.push(`
+        <div class="row">
+        <div class="card col border-dark" style="width: 18rem">
+          <div class="card-body card-header text-white bg-dark">
+            <h5 class="card-title">${teamArray[i].name}</h5>
+            <h6 class="card-subtitle mb-2 text-white fas fa-mug-hot">
+              ${teamArray[i].role}
+            </h6>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Employee ID: ${teamArray[i].id}</li>
+            <li class="list-group-item">
+              Email: <a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a>
+            </li>
+            <li class="list-group-item">Github: ${teamArray[i].github} </li>
+          </ul>
+        </div>
+      </div>
+        `);
+    }
+    else if (employeeRole === "Intern") {
+      employeeCards.push(`
+        <div class="row">
+        <div class="card col border-dark" style="width: 18rem">
+          <div class="card-body card-header text-white bg-dark">
+            <h5 class="card-title">${teamArray[i].name}</h5>
+            <h6 class="card-subtitle mb-2 text-white fas fa-mug-hot">
+              ${teamArray[i].role}
+            </h6>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Employee ID: ${teamArray[i].id}</li>
+            <li class="list-group-item">
+              Email: <a href="mailto:${teamArray[i].email}">${teamArray[i].email}</a>
+            </li>
+            <li class="list-group-item">School: ${teamArray[i].school} </li>
+          </ul>
+        </div>
+      </div>
+        `);
+    }
+  }
+  console.log(employeeCards);
+  return employeeCards;
 };
 
-const generateProjects = (teamArray) => {
-  console.log(teamArray);
-    const cards = teamArray;
-    console.log(cards);
+const generatePage = (teamArray) => {
 
   return `
     <!DOCTYPE html>
@@ -118,10 +104,10 @@ const generateProjects = (teamArray) => {
       <h1>My Team</h1>
     </header>
     <main class="container">
-      ${generateCards(cards)}
+      ${generateCards(teamArray)}
     </main>
   </body>
 </html>`;
 };
 
-module.exports = generateProjects;
+module.exports = generatePage;

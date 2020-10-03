@@ -35,7 +35,7 @@ function managerPrompt() {
       {
         type: "list",
         name: "role",
-        message: "please add the Manager role to your profile",
+        message: "please add the 'Manager' role to the profile",
         choices: ["Manager"],
       },
       {
@@ -87,6 +87,7 @@ function managerPrompt() {
         answers.officeNumber
       );
       team.push(newManager);
+      addTeam();
     });
 }
 
@@ -107,10 +108,10 @@ const addTeam = () => {
     ])
     .then((roleChoice) => {
       if (roleChoice.role === "Engineer") {
-        addEngineer();
+        addEngineer(roleChoice);
       }
       if (roleChoice.role === "Intern") {
-        addIntern();
+        addIntern(roleChoice);
       }
     });
 };
@@ -176,11 +177,11 @@ const addEngineer = (roleChoice) => {
         answers.name,
         answers.id,
         answers.email,
-        (role = "Engineer"),
+        roleChoice.role,
         answers.github
       );
       team.push(newEngineer);
-      addNewMember(team);
+      addNewMember();
     });
 };
 
@@ -245,11 +246,11 @@ const addIntern = (roleChoice) => {
         answers.name,
         answers.id,
         answers.email,
-        (role = "Intern"),
+        roleChoice.role,
         answers.school
       );
       team.push(newInern);
-      addNewMember(team);
+      addNewMember();
     });
 };
 
@@ -263,14 +264,14 @@ const addNewMember = () => {
         default: false,
       },
     ])
-    .then((teamArr) => {
-      if (teamArr.confirmAddMember) {
-        return addTeam(team);
+    .then((response) => {
+      if (response.confirmAddMember) {
+        addTeam(team);
       }
-      if (!teamArr.confirmAddMember) {
-        console.log('team', team);
+      if (!response.confirmAddMember) {
+        console.log("Team array after all questions answered", team);
         let pageHTML = generatePage(team);
-        writeFile(pageHTML)
+         writeFile(pageHTML)
           .then((writeFileResponse) => {
             console.log(writeFileResponse);
             return copyFile();
@@ -282,8 +283,4 @@ const addNewMember = () => {
     });
 };
 
-managerPrompt(team)
-  .then(addTeam)
-  .catch((err) => {
-    console.log(err);
-  });
+managerPrompt();
