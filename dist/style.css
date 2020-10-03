@@ -12,7 +12,6 @@ body {
   }
 
   header {
-    /* background-color: rgb(48, 45, 45); */
     color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
@@ -31,50 +30,9 @@ span{
       padding: 1rem;
   }
 
-  /* UV Index colors to display severity */
-  .favorable {
-    background-color: #77dd77;
-    color: #000000
-  }
-  .moderate {
-    background-color: #faac54;
-    color: #000000;
-  }
-  
-  .severe {
-    background-color: #ff6961;
-    color: #000000
-  }
-  
-  /* styles for the search history list */
-  li {
-    border: rgb(59, 58, 58) solid 1px;
-    padding: 10px;
-    list-style: upper-roman; 
-  }
-
   .list-group-item {
     text-decoration: none;
   }
   .card {
       padding: 0;
-  }
-
-  .Manager::after{
-    content: attr("src", "Icons/mug-hot-solid.svg");
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-  }
-  .Engineer::after {
-    background-image: url(/Icons/graduation-cap-solid.svg);
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-  }
-  .Intern::after{
-    background-image: url(/Icons/glasses-solid.svg);
-    display: inline-block;
-    width: 20px;
-    height: 20px;
   }
